@@ -9,7 +9,7 @@ var compact = require('lodash.compact');
 
 //override webhookPort for heroku
 
-config.webhookPort = Number(process.env.PORT || 8080)
+config.webhookPort = Number(process.env.PORT || 3000)
 
 console.log('The slack-gis webhook server is running.');
 var total_searches = 0;

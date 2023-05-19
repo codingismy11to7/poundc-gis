@@ -4,7 +4,7 @@ var querystring = require('querystring');
 //token=H8zroPK4aOADiF46YPzPCS48&team_id=T02A3F3HL&team_domain=poundc&service_id=9547183671&channel_id=C02A97T6Z&channel_name=testing&timestamp=1449629478.000053&user_id=U02A2NEUX&user_name=boltar&text=gis+testing12345&trigger_word=gis
 var options = {
 	hostname: 'localhost',
-	port: 5000,
+	port: 8080,
 	path: '/',
 	method: 'POST',
   path_str: 'https://hooks.slack.com/services/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',
