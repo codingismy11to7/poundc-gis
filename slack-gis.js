@@ -80,12 +80,17 @@ async function respondToRequestWithBody(req, body, res, headers) {
 
     console.log("calling with search text: '" + parsed.text + "'")
     total_searches++;
+
+    const start = process.hrtime();
     const result = await gis(parsed.text);
+    const end = process.hrtime(start);
+    const duration = end[0] + end[1] / 1000000000;
+
     //console.log(result[1].url)
-    respondWithImages(result)
+    respondWithImages(result, duration)
   }
 
-  function respondWithImages(images) {
+  function respondWithImages(images, duration) {
     console.log("respondWithImages:")
     var imageURLs;
     
@@ -99,7 +104,7 @@ async function respondToRequestWithBody(req, body, res, headers) {
       //don't normalize on the 1-based index -- the first result is garbage
       if (images[parsed.index]) {
         repeat_count = 0;
-        writeImageToResponse(null, images[parsed.index])
+        writeImageToResponse(null, images[parsed.index], duration)
       } else if (repeat_count < 5){
         // we have the shrug!
         repeat_count++;
@@ -110,7 +115,7 @@ async function respondToRequestWithBody(req, body, res, headers) {
         // too many shrugs
         repeat_count = 0;
         console.log("too many failures");
-        writeImageToResponse(null, null)
+        writeImageToResponse(null, null, duration)
       }
     }
     else
@@ -138,7 +143,7 @@ async function respondToRequestWithBody(req, body, res, headers) {
 
   }
 
-  function writeImageToResponse(error, imageURL) {
+  function writeImageToResponse(error, imageURL, duration) {
 
     if (imageURL) {
       response.text = imageURL;
@@ -160,6 +165,9 @@ async function respondToRequestWithBody(req, body, res, headers) {
       response.text = response.text.replace(/\\u003d/g, "=")  // replace all \u003d to =
       response.text = response.text.replace(/\\u0026/g, "&")  // replace all \u0026 to &
     }
+
+    duration = duration.toFixed(2)
+    response.text += `" (${duration} sec)"`
 
     res.end(JSON.stringify(response));
   }
