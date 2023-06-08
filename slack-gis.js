@@ -167,7 +167,7 @@ async function respondToRequestWithBody(req, body, res, headers) {
     }
 
     duration = duration.toFixed(2)
-    response.text += `" (${duration} sec)"`
+    response.text += ` (${duration} sec)`
 
     res.end(JSON.stringify(response));
   }
