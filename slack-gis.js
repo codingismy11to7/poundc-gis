@@ -95,7 +95,7 @@ async function respondToRequestWithBody(req, body, res, headers) {
     var imageURLs;
     
     // remove fbsbx.com entries (among others)
-    var fbsbx = /(fbsbx\.com)|(memegenerator\.net)(gstatic.com)/i
+    var fbsbx = /(fbsbx\.com)|(memegenerator\.net)|(gstatic.com)|(instagram\.com)|(tiktok\.com)/i
     //console.log("resopnded with results: '" + images + "'")
 
     images = images.filter(img => !fbsbx.exec(img.url))
