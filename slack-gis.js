@@ -266,6 +266,6 @@ function getSearchTextAndIndex(messageText) {
 
 console.log('starting app');
 
-//http.createServer(takeRequest).listen(config.webhookPort);
+http.createServer(takeRequest).listen(config.webhookPort);
 
 console.log('Webhook server listening at port:', config.webhookPort);
