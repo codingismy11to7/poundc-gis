@@ -264,6 +264,8 @@ function getSearchTextAndIndex(messageText) {
   return {text: messageText, index: imageIndex};
 }
 
-http.createServer(takeRequest).listen(config.webhookPort);
+console.log('starting app');
+
+//http.createServer(takeRequest).listen(config.webhookPort);
 
 console.log('Webhook server listening at port:', config.webhookPort);
