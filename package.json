@@ -22,12 +22,13 @@
     "tape": "^3.0.3"
   },
   "dependencies": {
+    "axios": "^1.6.0",
     "call-next-tick": "^1.1.2",
-    "g-i-s": "git+https://github.com/harrego/g-i-s.git",
+    "jsdom": "^21.1.1",
     "lodash.compact": "^3.0.1",
     "pick-first-good-url": "^1.0.0",
     "probable": "^1.7.0",
-    "qs": "^5.1.0",
+    "qs": "^6.10.3",
     "random-word": "^2.0.0"
   }
 }
