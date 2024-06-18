@@ -11,6 +11,9 @@ var compact = require('lodash.compact');
 
 config.webhookPort = Number(process.env.PORT || 8080)
 
+if (process.env.WEBHOOK_TOKENS)
+  config.validWebhookTokens = process.env.WEBHOOK_TOKENS.split(",");
+
 console.log('The slack-gis webhook server is running.');
 var total_searches = 0;
 var total_failures = 0;
@@ -93,7 +96,7 @@ async function respondToRequestWithBody(req, body, res, headers) {
   function respondWithImages(images, duration) {
     console.log("respondWithImages:")
     var imageURLs;
-    
+
     // remove fbsbx.com entries (among others)
     var fbsbx = /(fbsbx.*\.com)|(memegenerator.*\.net)|(gstatic.*\.com)|(instagram.*\.com)|(tiktok.*\.com)/i
     //console.log("resopnded with results: '" + images + "'")
